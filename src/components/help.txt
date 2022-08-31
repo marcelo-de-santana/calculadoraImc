@@ -1,0 +1,1 @@
+dentro da pasta components ficarão os componentes que criarmos em nossa aplicação.
