@@ -3,9 +3,8 @@ import { StyleSheet } from "react-native";
 const styles = StyleSheet.create({
     contextImc: {
         flex: 1,
-        marginTop: 15,
-        paddingTop: 60,
-        borderRadius: 50,
+        marginTop: 20,
+        paddingTop: 15,
         alignItems: "center",
         width: "100%",
     },
@@ -31,7 +30,7 @@ const styles = StyleSheet.create({
         paddingBottom: 5,
     },
     sharedText: {
-        color: "ffffff",
+        color: "#ffffff",
         fontWeight: "bold",
         paddingHorizontal: 30,
     }

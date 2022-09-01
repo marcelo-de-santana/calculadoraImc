@@ -1,5 +1,7 @@
 import React, {useState} from "react";
 import {
+    Pressable,
+    Keyboard,
     Text,
     TextInput,
     TouchableOpacity,
@@ -20,7 +22,9 @@ export default function Form(props){
     const [errorMessage, setErrorMessage] = useState(null);
 
 function imcCalculator(){
-    return setImc((weight/(height**2)).toFixed(2));
+    let heightFormat = height.replace(",",".");
+    let weightFormat = weight.replace(",",".");
+    return setImc((weightFormat/(heightFormat**2)).toFixed(2));
 }
 
 function verificationImc(){
@@ -48,7 +52,7 @@ function validationImc(){
 }
 
     return(
-        <View style={styles.formContext}>
+        <Pressable onPress={Keyboard.dismiss} style={styles.formContext}>
             <View style={styles.form}>
                 <Text style={styles.formLabel}>Altura</Text>
                 <Text style={styles.errorMessage}>{errorMessage}</Text>
@@ -56,7 +60,7 @@ function validationImc(){
                     style={styles.input}
                     onChangeText={setHeight}
                     value={height}
-                    placeholder="Ex. 1.73"
+                    placeholder="Ex. 1.75"
                     keyboardType="numeric"
                 />
 
@@ -66,7 +70,7 @@ function validationImc(){
                     style={styles.input}
                     onChangeText={setWeight}
                     value={weight}
-                    placeholder="Ex. 75.36"
+                    placeholder="Ex. 86.300"
                     keyboardType="numeric"
                 />
                 <TouchableOpacity
@@ -78,6 +82,6 @@ function validationImc(){
                 </TouchableOpacity>
             </View>
             <ResultImc messageResultImc={messageImc} ResultImc={imc}/>    
-        </View>
+        </Pressable>
     );
 }
