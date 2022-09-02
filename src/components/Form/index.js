@@ -86,7 +86,7 @@ function validationImc(){
                     </TouchableOpacity>    
                 </View>
             }
-            <FlatList style={styles.listImcs}
+            <FlatList style={styles.listImcs} showsVerticalScrollIndicator={false}
                 data={imcList.reverse()}
                 renderItem={({item}) => {
                     return(
