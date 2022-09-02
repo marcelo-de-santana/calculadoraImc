@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import {
+    FlatList,
     Pressable,
     Keyboard,
     Text,
@@ -20,11 +21,14 @@ export default function Form(props){
     const [TextButton, setTextButton] = useState("Calcular");
     const [messageImc, setMessageImc] = useState("Preencha o peso e altura");
     const [errorMessage, setErrorMessage] = useState(null);
+    const [imcList, setImcList] = useState([]);
 
 function imcCalculator(){
     let heightFormat = height.replace(",",".");
     let weightFormat = weight.replace(",",".");
-    return setImc((weightFormat/(heightFormat**2)).toFixed(2));
+    let totalImc = ((weightFormat/(heightFormat**2)).toFixed(2));
+    setImcList((arr) => [...arr, {id: new Date().getTime(), imc:totalImc}]);
+    setImc(totalImc);
 }
 
 function verificationImc(){
@@ -35,6 +39,7 @@ function verificationImc(){
 };
 
 function validationImc(){
+    console.log(imcList);
     if(height != null && weight != null){
         imcCalculator();
         setHeight(null);
@@ -81,6 +86,17 @@ function validationImc(){
                     </TouchableOpacity>    
                 </View>
             }
+            <FlatList style={styles.listImcs}
+                data={imcList.reverse()}
+                renderItem={({item}) => {
+                    return(
+                        <Text style={styles.resultImcItem}>
+                            <Text style={styles.textResultItemList}>Resultado Imc = </Text>
+                            {item.imc}
+                        </Text>
+                    )
+                }}
+                keyExtractor={(item) => {item.id}}/>
         </View>
     );
 }
